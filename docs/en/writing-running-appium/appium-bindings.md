@@ -125,6 +125,42 @@ $this->hideKeyboard(array('strategy' => 'pressKey', 'key' => 'Done'));
 driver.HideKeyboard("Done");
 ```
 
+### Start Activity
+
+Open an activity in the current app or start a new app and open an activity *Android only*
+
+```java
+// java
+driver.startActivity("appPackage","com.example.android.apis", null, null);
+```
+
+```javascript
+// javascript
+driver.startActivity({appPackage: 'com.example.android.apis', appActivity: '.Foo'}, cb);
+```
+
+```python
+# python
+driver.start_activity('com.example.android.apis', '.Foo')
+```
+
+```ruby
+# ruby
+start_activity app_package: 'io.appium.android.apis', app_activity: '.accessibility.AccessibilityNodeProviderActivity'
+```
+
+```csharp
+// c#
+driver.StartActivity("com.example.android.apis", ".Foo");
+```
+
+```php
+// php
+$this->startActivity(array("appPackage" => "com.example.android.apis",
+                            "appActivity" => ".Foo"));
+```
+
+
 ### Open Notifications
 
 Open the notification shade *Android only*
@@ -956,6 +992,46 @@ $this->pushFile($path, base64_encode($data));
 ```csharp
 // c#
 driver.PushFile("/data/local/tmp/file.txt", "some data for the file");
+```
+
+### Settings
+
+Here you will find sample code for getting/setting appium serverSetting.
+For more information on how they work, and which settings are supported, see
+[the settings docs][/docs/en/advanced-concepts/settings.md]
+
+```ruby
+current_settings = get_settings
+update_settings someSetting: true
+```
+
+```python
+current_settings = driver.get_settings()
+driver.update_settings({"someSetting": true})
+```
+
+```java
+JsonObject settings = driver.getSettings()
+// java-client doesn't support setting arbitrary settings, just settings which are already provided by appium.
+// So for the 'ignoreUnimportantViews' setting, the following method exists:
+driver.ignoreUnimportantViews(true);
+```
+
+```javascript
+var settings = driver.settings();
+browser.updateSettings({'someSetting': true});
+```
+
+```php
+$settings = $this->getSettings();
+$this->updateSettings(array('cyberdelia' => "open"));
+```
+
+```csharp
+Dictionary<String, Object>settings = driver.GetSettings();
+// dotnet-driver doesn't support setting arbitrary settings, just settings which are already provided by appium.
+// So for the 'ignoreUnimportantViews' setting, the following method exists:
+driver.IgnoreUnimportantViews(true);
 ```
 
 ### Appium Desktop Apps
